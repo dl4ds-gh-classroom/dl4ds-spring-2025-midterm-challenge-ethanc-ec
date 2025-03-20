@@ -7,12 +7,13 @@ import os
 import numpy as np
 import pandas as pd
 from tqdm.auto import tqdm  # For progress bars
-import wandb    
+import wandb
+
 
 # --- Evaluation on Clean CIFAR-100 Test Set ---
 def evaluate_cifar100_test(model, testloader, device):
     """Evaluation on clean CIFAR-100 test set."""
-    model.load_state_dict(torch.load("best_model.pth")) # Load the best model
+    model.load_state_dict(torch.load("best_model.pth"))  # Load the best model
     model.eval()
     correct = 0
     total = 0
@@ -22,11 +23,10 @@ def evaluate_cifar100_test(model, testloader, device):
             inputs = inputs.to(device)
             outputs = model(inputs)
             _, predicted = outputs.max(1)
-            predictions.extend(predicted.cpu().numpy()) # Move predictions to CPU and convert to numpy
+            predictions.extend(predicted.cpu().numpy())  # Move predictions to CPU and convert to numpy
             total += labels.size(0)
             correct += predicted.eq(labels.to(device)).sum().item()
 
-    clean_accuracy = 100. * correct / total
+    clean_accuracy = 100.0 * correct / total
     # print(f"Clean CIFAR-100 Test Accuracy: {clean_accuracy:.2f}%")
     return predictions, clean_accuracy
-

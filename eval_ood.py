@@ -7,8 +7,9 @@ import os
 import numpy as np
 import pandas as pd
 from tqdm.auto import tqdm  # For progress bars
-import wandb    
+import wandb
 import urllib.request
+
 
 def evaluate_ood(model, distortion_name, severity, CONFIG):
     data_dir = CONFIG["ood_dir"]
@@ -23,30 +24,34 @@ def evaluate_ood(model, distortion_name, severity, CONFIG):
     images = images[start_index:end_index]
 
     # Convert to PyTorch tensors and create DataLoader
-    images = torch.from_numpy(images).float() / 255.  # Normalize to [0, 1]
+    images = torch.from_numpy(images).float() / 255.0  # Normalize to [0, 1]
     images = images.permute(0, 3, 1, 2)  # (N, H, W, C) -> (N, C, H, W)
     dataset = torch.utils.data.TensorDataset(images)
     dataloader = torch.utils.data.DataLoader(
-        dataset, 
-        batch_size=CONFIG["batch_size"], 
-        shuffle=False, 
-        num_workers=CONFIG["num_workers"], 
-        pin_memory=True)
+        dataset,
+        batch_size=CONFIG["batch_size"],
+        shuffle=False,
+        num_workers=CONFIG["num_workers"],
+        pin_memory=True,
+    )
 
     # Normalize after converting to tensor
     normalize = transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761))
-    
+
     predictions = []  # Store predictions
     with torch.no_grad():
-        for inputs in tqdm(dataloader, desc=f"Evaluating {distortion_name} (Severity {severity})", leave=False):
-           inputs = inputs[0]
-           inputs = normalize(inputs) # Apply normalization
-           inputs = inputs.to(device)
+        for inputs in tqdm(
+            dataloader, desc=f"Evaluating {distortion_name} (Severity {severity})", leave=False
+        ):
+            inputs = inputs[0]
+            inputs = normalize(inputs)  # Apply normalization
+            inputs = inputs.to(device)
 
-           outputs = model(inputs)
-           _, predicted = outputs.max(1)
-           predictions.extend(predicted.cpu().numpy())
+            outputs = model(inputs)
+            _, predicted = outputs.max(1)
+            predictions.extend(predicted.cpu().numpy())
     return predictions
+
 
 # Check if the files are already downloaded
 def files_already_downloaded(directory, num_files):
@@ -99,18 +104,17 @@ def evaluate_ood_test(model, CONFIG):
 
     return all_predictions
 
-def create_ood_df(all_predictions):
 
+def create_ood_df(all_predictions):
     distortions = [f"distortion{str(i).zfill(2)}" for i in range(19)]
-    
+
     # --- Create Submission File (OOD) ---
     # Create IDs for OOD (assuming the order is as evaluated)
     ids_ood = []
     for distortion in distortions:
         for severity in range(1, 6):
             for i in range(10000):
-              ids_ood.append(f"{distortion}_{severity}_{i}")
+                ids_ood.append(f"{distortion}_{severity}_{i}")
 
-    submission_df_ood = pd.DataFrame({'id': ids_ood, 'label': all_predictions})
+    submission_df_ood = pd.DataFrame({"id": ids_ood, "label": all_predictions})
     return submission_df_ood
-
