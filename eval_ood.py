@@ -1,14 +1,11 @@
-import torch
-import torch.nn as nn
-import torch.optim as optim
-import torchvision
-import torchvision.transforms as transforms
 import os
+import urllib.request
+
 import numpy as np
 import pandas as pd
+import torch
+import torchvision.transforms as transforms
 from tqdm.auto import tqdm  # For progress bars
-import wandb
-import urllib.request
 
 
 def evaluate_ood(model, distortion_name, severity, CONFIG):

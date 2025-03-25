@@ -1,17 +1,16 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/xnB1OI0j)
 # DS542 Deep Learning for Data Science -- Spring 2025 Midterm Challenge
+
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/xnB1OI0j)
 
 ## Overview
 
 This repository contains the code for the midterm challenge of the course DS542 Deep Learning for Data Science.
 
 The challenge is in three parts:
-1. **Part 1 -- Simple CNN:** Define a relatively simple CNN model and train it on the CIFAR-100 dataset to
-    get a complete pipeline and establish baseline performance.
-2. **Part 2 -- More Sophisticated CNN Models:** Use a more sophisticated model, including predefined models from torchvision
-   to train and evaluate on CIFAR-100.
-3. **Part 3 -- Transfer Learning from a Pretrained Model:** Pretrain a model, or use one of the pretrained models from torchvision, and
-   fine-tune it on CIFAR-100. Try to beat the best benchmark performance on the leaderboard.
+
+1. **Part 1 -- Simple CNN:** Define a relatively simple CNN model and train it on the CIFAR-100 dataset to get a complete pipeline and establish baseline performance.
+2. **Part 2 -- More Sophisticated CNN Models:** Use a more sophisticated model, including predefined models from torchvision to train and evaluate on CIFAR-100.
+3. **Part 3 -- Transfer Learning from a Pretrained Model:** Pretrain a model, or use one of the pretrained models from torchvision, and fine-tune it on CIFAR-100. Try to beat the best benchmark performance on the leaderboard.
 
 All your models should be built from linear and convoultional layers, as well as pooling, etc. We haven't covered Transformers yet,
 so don't use Transformer architectures.
@@ -38,7 +37,7 @@ first time your successfully run the sample code, `starter_code.py`.
 It should install into the `data/cifar-100-python` directory.
 
 We also have the challenge images in `data/ood-test` directory. Those are used
-to make predictions on the challenge images with your model and produce the 
+to make predictions on the challenge images with your model and produce the
 submission file.
 
 ## Setup
@@ -61,10 +60,10 @@ pip install -r requirements.txt
 In addition to the code, we require a short report that includes:
 
 * **AI Disclosure:** You are allowed to use AI assistance for this assignment, but you are required to:
-    * Explain how you used AI, e.g. Copilot, Cursor, ChatGPT, etc.
-    * Enumerate in detail which parts of the code were written by you and which were written with AI assistance.
-    * Have detailed code comments explaining what every part of your code does. This can be in the codebase itself.
-    * **Failure to disclose how you used AI may result in a score of 0 for the assignment.**
+  * Explain how you used AI, e.g. Copilot, Cursor, ChatGPT, etc.
+  * Enumerate in detail which parts of the code were written by you and which were written with AI assistance.
+  * Have detailed code comments explaining what every part of your code does. This can be in the codebase itself.
+  * **Failure to disclose how you used AI may result in a score of 0 for the assignment.**
 * **Model Description:** Detailed explanation of the chosen architecture, including justifications for design choices.
 * **Hyperparameter Tuning:** Description of the hyperparameter search process and the final chosen values.
 * **Regularization Techniques:** Explanation of the regularization methods used and their impact.
@@ -78,21 +77,21 @@ In addition to the code, we require a short report that includes:
 The grading rubric is as follows:
 
 * **Code Quality (30%):**
-    * Correctness of implementation.
-    * Readability and organization of code.
-    * Use of PyTorch best practices.
-    * Efficiency of data loading and processing.
+  * Correctness of implementation.
+  * Readability and organization of code.
+  * Use of PyTorch best practices.
+  * Efficiency of data loading and processing.
 * **Model Performance (40%):**
-    * Performance on the primary evaluation metric.
-    * Ranking on the leaderboard of at least above 0.397
-    * List the leaderboard performance, identifier and username for the best scores for each of the three parts of the assignment.
+  * Performance on the primary evaluation metric.
+  * Ranking on the leaderboard of at least above 0.397
+  * List the leaderboard performance, identifier and username for the best scores for each of the three parts of the assignment.
 * **Experiment Tracking and Report (30%):**
-    * Comprehensive AI disclosure statement.
-    * Completeness and clarity of the report.
-    * Thoroughness of experiment tracking.
-    * Justification of design choices.
-    * Analysis of results.
-    * Ablation study (if included).
+  * Comprehensive AI disclosure statement.
+  * Completeness and clarity of the report.
+  * Thoroughness of experiment tracking.
+  * Justification of design choices.
+  * Analysis of results.
+  * Ablation study (if included).
 
 ## Bonus Points (Optional)
 
