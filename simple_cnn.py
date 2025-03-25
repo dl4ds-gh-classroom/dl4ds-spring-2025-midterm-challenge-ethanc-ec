@@ -4,7 +4,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
-from tqdm.auto import tqdm  # For progress bars
+from tqdm.auto import tqdm
 
 import wandb
 

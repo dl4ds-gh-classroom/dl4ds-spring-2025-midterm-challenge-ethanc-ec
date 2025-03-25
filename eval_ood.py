@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import torch
 import torchvision.transforms as transforms
-from tqdm.auto import tqdm  # For progress bars
+from tqdm.auto import tqdm
 
 
 def evaluate_ood(model, distortion_name, severity, CONFIG):

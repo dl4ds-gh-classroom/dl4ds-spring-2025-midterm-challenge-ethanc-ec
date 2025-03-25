@@ -1,5 +1,5 @@
 import torch
-from tqdm.auto import tqdm  # For progress bars
+from tqdm.auto import tqdm
 
 
 # --- Evaluation on Clean CIFAR-100 Test Set ---
