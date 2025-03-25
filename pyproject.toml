@@ -38,6 +38,7 @@ select = [
 ]
 ignore = [
     "RUF010", # Explicit conversion flag
+    "I001", # isort: imports are incorrectly sorted
 ]
 
 [tool.ruff.format]
