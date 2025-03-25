@@ -20,7 +20,6 @@ def find_optimal_batch_size(model, trainset, device, num_workers, start_size=32,
     import time
 
     model = model.to(device)
-    optimal_size = start_size
     times = {}
 
     print(f"Testing batch sizes on device: {device}")
@@ -37,12 +36,9 @@ def find_optimal_batch_size(model, trainset, device, num_workers, start_size=32,
             # Time a few batches
             start_time = time.time()
             batch_count = 0
-            for i, (inputs, labels) in enumerate(loader):
+            for _, (inputs, labels) in enumerate(loader):
                 inputs = inputs.to(device)
                 labels = labels.to(device)
-
-                # Forward pass
-                outputs = model(inputs)
 
                 batch_count += 1
                 if batch_count >= 5:  # Test with 5 batches
@@ -56,9 +52,6 @@ def find_optimal_batch_size(model, trainset, device, num_workers, start_size=32,
             times[batch_size] = throughput
 
             print(f"Batch size {batch_size}: {throughput:.2f} images/sec")
-
-            # Update optimal size if this one worked
-            optimal_size = batch_size
 
             # Increase batch size for next iteration
             batch_size *= 2

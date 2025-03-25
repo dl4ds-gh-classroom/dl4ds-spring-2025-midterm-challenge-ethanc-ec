@@ -11,7 +11,7 @@ def evaluate_cifar100_test(model, testloader, device):
     total = 0
     predictions = []  # Store predictions for the submission file
     with torch.no_grad():
-        for i, (inputs, labels) in enumerate(tqdm(testloader, desc="Evaluating on Clean Test Set")):
+        for inputs, labels in tqdm(testloader, desc="Evaluating on Clean Test Set"):
             inputs = inputs.to(device)
             outputs = model(inputs)
             _, predicted = outputs.max(1)

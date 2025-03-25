@@ -62,7 +62,6 @@ def files_already_downloaded(directory, num_files):
 
 def evaluate_ood_test(model, CONFIG):
     data_dir = CONFIG["ood_dir"]
-    device = CONFIG["device"]
 
     num_files = 19  # Number of files to download
 
